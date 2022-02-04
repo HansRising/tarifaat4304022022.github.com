@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/TarifaAT43022022AhorropromedioxCliente_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-54.89158099668559,-86.85473227720641],[-34.68897641676001,-57.46912561549647]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GooglecnSatellite_0');
+        map.getPane('pane_GooglecnSatellite_0').style.zIndex = 400;
+        var layer_GooglecnSatellite_0 = L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+            pane: 'pane_GooglecnSatellite_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.google.com/intl/zh-CN_cn/permissions/geoguidelines/attr-guide.html">地图数据 ©2016 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 21
+        });
+        layer_GooglecnSatellite_0;
+        map.addLayer(layer_GooglecnSatellite_0);
+        function pop_TarifaAT43022022AhorropromedioxCliente_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">fid</th>\
+                        <td>' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NOM_REG</th>\
+                        <td>' + (feature.properties['NOM_REG'] !== null ? autolinker.link(feature.properties['NOM_REG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NOM_COM</th>\
+                        <td>' + (feature.properties['NOM_COM'] !== null ? autolinker.link(feature.properties['NOM_COM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Radiación</th>\
+                        <td>' + (feature.properties['Radiación'] !== null ? autolinker.link(feature.properties['Radiación'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Radia_diaria</th>\
+                        <td>' + (feature.properties['Radia_diaria'] !== null ? autolinker.link(feature.properties['Radia_diaria'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Distribuidora</th>\
+                        <td>' + (feature.properties['Distribuidora'] !== null ? autolinker.link(feature.properties['Distribuidora'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Clientes AT4.3</th>\
+                        <td>' + (feature.properties['Clientes AT4.3'] !== null ? autolinker.link(feature.properties['Clientes AT4.3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">kWh total AT4.3</th>\
+                        <td>' + (feature.properties['kWh total AT4.3'] !== null ? autolinker.link(feature.properties['kWh total AT4.3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">kWp Promedio 4.3</th>\
+                        <td>' + (feature.properties['kWp Promedio 4.3'] !== null ? autolinker.link(feature.properties['kWp Promedio 4.3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">kWp total 4.3</th>\
+                        <td>' + (feature.properties['kWp total 4.3'] !== null ? autolinker.link(feature.properties['kWp total 4.3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Precio auto consumo</th>\
+                        <td>' + (feature.properties['Precio auto consumo'] !== null ? autolinker.link(feature.properties['Precio auto consumo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Precio Inyección</th>\
+                        <td>' + (feature.properties['Precio Inyección'] !== null ? autolinker.link(feature.properties['Precio Inyección'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Ahorro Promedio x Cliente [$] Anual</th>\
+                        <td>' + (feature.properties['Ahorro Promedio x Cliente [$] Anual'] !== null ? autolinker.link(feature.properties['Ahorro Promedio x Cliente [$] Anual'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Criterio</th>\
+                        <td>' + (feature.properties['Criterio'] !== null ? autolinker.link(feature.properties['Criterio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TarifaAT43022022AhorropromedioxCliente_1_0(feature) {
+            if (feature.properties['Criterio'] >= 0.000000 && feature.properties['Criterio'] <= 1000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(14,216,139,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 1000000.000000 && feature.properties['Criterio'] <= 2000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(96,219,152,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 2000000.000000 && feature.properties['Criterio'] <= 3000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(175,223,165,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 3000000.000000 && feature.properties['Criterio'] <= 4000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,241,179,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 4000000.000000 && feature.properties['Criterio'] <= 6000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,249,184,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 6000000.000000 && feature.properties['Criterio'] <= 8000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,212,141,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 8000000.000000 && feature.properties['Criterio'] <= 10000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,174,97,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 10000000.000000 && feature.properties['Criterio'] <= 13000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,171,98,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 13000000.000000 && feature.properties['Criterio'] <= 16000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,167,99,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 16000000.000000 && feature.properties['Criterio'] <= 19000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,164,100,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 19000000.000000 && feature.properties['Criterio'] <= 22000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,160,101,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 22000000.000000 && feature.properties['Criterio'] <= 25000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,157,102,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 25000000.000000 && feature.properties['Criterio'] <= 28000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,153,103,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 28000000.000000 && feature.properties['Criterio'] <= 31000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(250,140,95,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 31000000.000000 && feature.properties['Criterio'] <= 34000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,127,86,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 34000000.000000 && feature.properties['Criterio'] <= 37000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(244,115,78,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 37000000.000000 && feature.properties['Criterio'] <= 40000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(241,102,69,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 40000000.000000 && feature.properties['Criterio'] <= 43000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,89,61,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 43000000.000000 && feature.properties['Criterio'] <= 46000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,76,53,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 46000000.000000 && feature.properties['Criterio'] <= 49000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,64,44,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 49000000.000000 && feature.properties['Criterio'] <= 52000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,51,36,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 52000000.000000 && feature.properties['Criterio'] <= 56000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(225,38,28,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 56000000.000000 && feature.properties['Criterio'] <= 60000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(222,25,19,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 60000000.000000 && feature.properties['Criterio'] <= 65000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,12,11,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Criterio'] >= 65000000.000000 && feature.properties['Criterio'] <= 150000000.000000 ) {
+                return {
+                pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,0,3,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_TarifaAT43022022AhorropromedioxCliente_1');
+        map.getPane('pane_TarifaAT43022022AhorropromedioxCliente_1').style.zIndex = 401;
+        map.getPane('pane_TarifaAT43022022AhorropromedioxCliente_1').style['mix-blend-mode'] = 'normal';
+        var layer_TarifaAT43022022AhorropromedioxCliente_1 = new L.geoJson(json_TarifaAT43022022AhorropromedioxCliente_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_TarifaAT43022022AhorropromedioxCliente_1',
+            layerName: 'layer_TarifaAT43022022AhorropromedioxCliente_1',
+            pane: 'pane_TarifaAT43022022AhorropromedioxCliente_1',
+            onEachFeature: pop_TarifaAT43022022AhorropromedioxCliente_1,
+            style: style_TarifaAT43022022AhorropromedioxCliente_1_0,
+        });
+        bounds_group.addLayer(layer_TarifaAT43022022AhorropromedioxCliente_1);
+        map.addLayer(layer_TarifaAT43022022AhorropromedioxCliente_1);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Tarifa AT4.3 02-2022 -Ahorro promedio x Cliente [$]<br /><table><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_010000000.png" /></td><td>0 - $ 1.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_100000020000001.png" /></td><td>$ 1.000.000 - $ 2.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_200000030000002.png" /></td><td>$ 2.000.000 - $ 3.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_300000040000003.png" /></td><td>$ 3.000.000 - $ 4.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_400000060000004.png" /></td><td>$ 4.000.000 - $ 6.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_600000080000005.png" /></td><td>$ 6.000.000 - $ 8.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_8000000100000006.png" /></td><td>$ 8.000.000 - $ 10.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_10000000130000007.png" /></td><td>$ 10.000.000 - $ 13.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_13000000160000008.png" /></td><td>$ 13.000.000 - $ 16.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_16000000190000009.png" /></td><td>$ 16.000.000 - $ 19.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_190000002200000010.png" /></td><td>$ 19.000.000 - $ 22.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_220000002500000011.png" /></td><td>$ 22.000.000 - $ 25.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_250000002800000012.png" /></td><td>$ 25.000.000 - $ 28.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_280000003100000013.png" /></td><td>$ 28.000.000 - $ 31.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_310000003400000014.png" /></td><td>$ 31.000.000 - $ 34.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_340000003700000015.png" /></td><td>$ 34.000.000 - $ 37.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_370000004000000016.png" /></td><td>$ 37.000.000 - $ 40.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_400000004300000017.png" /></td><td>$ 40.000.000 - $ 43.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_430000004600000018.png" /></td><td>$ 43.000.000 - $ 46.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_460000004900000019.png" /></td><td>$ 46.000.000 - $ 49.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_490000005200000020.png" /></td><td>$ 49.000.000 - $ 52.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_520000005600000021.png" /></td><td>$ 52.000.000 - $ 56.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_560000006000000022.png" /></td><td>$ 56.000.000 - $ 60.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_600000006500000023.png" /></td><td>$ 60.000.000 - $ 65.000.000</td></tr><tr><td style="text-align: center;"><img src="legend/TarifaAT43022022AhorropromedioxCliente_1_6500000015000000024.png" /></td><td>$ 65.000.000 - $ 150.000.000</td></tr></table>': layer_TarifaAT43022022AhorropromedioxCliente_1,"Google.cn Satellite": layer_GooglecnSatellite_0,},{collapsed:false}).addTo(map);
+        map.on("zoomend", function(){
+
+                if (map.hasLayer(layer_TarifaAT43022022AhorropromedioxCliente_1)) {
+                    if (map.getZoom() <= 8 && map.getZoom() >= 19) {
+                        layer_TarifaAT43022022AhorropromedioxCliente_1.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_TarifaAT43022022AhorropromedioxCliente_1.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        });
+        setBounds();
+        var i = 0;
+        layer_TarifaAT43022022AhorropromedioxCliente_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['NOM_COM'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['NOM_COM']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_TarifaAT43022022AhorropromedioxCliente_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+                if (map.hasLayer(layer_TarifaAT43022022AhorropromedioxCliente_1)) {
+                    if (map.getZoom() <= 8 && map.getZoom() >= 19) {
+                        layer_TarifaAT43022022AhorropromedioxCliente_1.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_TarifaAT43022022AhorropromedioxCliente_1.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        resetLabels([layer_TarifaAT43022022AhorropromedioxCliente_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_TarifaAT43022022AhorropromedioxCliente_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_TarifaAT43022022AhorropromedioxCliente_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_TarifaAT43022022AhorropromedioxCliente_1]);
+        });
+        </script>
+    </body>
+</html>
